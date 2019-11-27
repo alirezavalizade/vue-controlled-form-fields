@@ -6,7 +6,6 @@
 <script>
 import set from 'lodash.set';
 import get from 'lodash.get';
-import merge from 'lodash.merge';
 import isEqual from 'lodash.isequal';
 
 export default {
@@ -125,7 +124,10 @@ export default {
   methods: {
     registerField(name, config) {
       if (!this.isFieldExist(name)) {
-        this.fields = merge({}, this.fields, this.initFieldState(name, config));
+        this.fields = {
+          ...this.fields,
+          ...this.initFieldState(name, config)
+        };
       } else {
         this.setConfig(name, config);
       }

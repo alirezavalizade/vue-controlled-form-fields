@@ -1,15 +1,35 @@
 {
-  "name": "vue-controlled-field",
+  "name": "vue-controlled-form-fields",
   "version": "0.1.0",
-  "private": true,
+  "description": "Controlled and subscription-based forms, fields with state management",
+  "main": "dist/vue-controlled-form-fields.umd.js",
+  "browser": "src/index.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "serve": "vue-cli-service serve ./dev/index.js",
+    "build": "vue-cli-service build --target lib --inline-vue ./src/index.js",
+    "build:dev": "vue-cli-service build ./dev/index.js",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"
   },
+  "author": "Alireza Valizade <alirezavalizade0@gmail.com> (https://github.com/alirezavalizade)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alirezavalizade/vue-controlled-form-fields.git"
+  },
+  "bugs": {
+    "url": "https://github.com/alirezavalizade/vue-controlled-form-fields/issues"
+  },
+  "homepage": "https://github.com/alirezavalizade/vue-controlled-form-fields#readme",
   "dependencies": {
     "core-js": "^3.3.2",
+    "lodash.get": "^4.4.2",
+    "lodash.isequal": "^4.5.0",
+    "lodash.merge": "^4.6.2",
+    "lodash.set": "^4.3.2",
     "vue": "^2.6.10"
   },
   "devDependencies": {
@@ -19,14 +39,18 @@
     "@vue/cli-service": "^4.0.0",
     "@vue/eslint-config-prettier": "^5.0.0",
     "@vue/test-utils": "1.0.0-beta.29",
+    "ant-design-vue": "^1.4.6",
     "babel-eslint": "^10.0.3",
+    "babel-plugin-import": "^1.13.0",
     "eslint": "^5.16.0",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-vue": "^5.0.0",
-    "less": "^3.0.4",
+    "less": "^3.10.3",
     "less-loader": "^5.0.0",
     "lint-staged": "^9.4.2",
+    "node-sass": "^4.13.0",
     "prettier": "^1.18.2",
+    "sass-loader": "^8.0.0",
     "vue-template-compiler": "^2.6.10"
   },
   "gitHooks": {

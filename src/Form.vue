@@ -34,16 +34,6 @@ export default {
       submitting: false
     };
   },
-  watch: {
-    initialValues(newValue, prevValue) {
-      if (!isEqual(newValue, prevValue)) {
-        this.initialize(newValue);
-        if (!this.keepDirtyOnReinitialize) {
-          this.setInAll({ dirty: false });
-        }
-      }
-    }
-  },
   computed: {
     formState() {
       return {
@@ -88,7 +78,10 @@ export default {
       return Object.keys(this.modifiedFields).length > 0;
     },
     pristine() {
-      return Object.keys(this.filterFields('pristine')).length > 0;
+      return (
+        Object.keys(this.filterFields('pristine')).length ===
+        this.fieldKeys.length
+      );
     },
     touched() {
       return Object.keys(this.filterFields('touched')).length > 0;
@@ -116,6 +109,16 @@ export default {
     },
     fieldKeys() {
       return Object.keys(this.fields);
+    }
+  },
+  watch: {
+    initialValues(newValue, prevValue) {
+      if (!isEqual(newValue, prevValue)) {
+        this.initialize(newValue);
+        if (!this.keepDirtyOnReinitialize) {
+          this.setInAll({ dirty: false });
+        }
+      }
     }
   },
   created() {
@@ -162,10 +165,10 @@ export default {
     },
     getFieldState(name) {
       const state = get(this.fields, name);
-      const pristine = isEqual(
-        get(this.initialValues, name),
-        get(state, 'value')
-      );
+      const pristine =
+        typeof this.initialValues === 'object'
+          ? isEqual(get(this.initialValues, name), get(state, 'value'))
+          : true;
       return {
         ...state,
         validate: undefined,
@@ -190,6 +193,8 @@ export default {
       }
     },
     handleSubmit() {
+      this.setInAll({ touched: true });
+      this.fieldKeys.forEach(this.handleFieldValidations);
       if (this.valid) {
         this.submitting = true;
         try {
@@ -281,11 +286,23 @@ export default {
     handleFieldValidations(name) {
       const state = this.fields[name];
       if (state.validate) {
-        const error = state.validate(state.value, this.values);
-        if (error) {
+        const error = Array.isArray(state.validate)
+          ? this.composeFieldValidators(state.validate)(
+              state.value,
+              this.values
+            )
+          : state.validate(state.value, this.values);
+        if (error || (!error && state.error)) {
           this.setIn(name, 'error', error);
         }
       }
+    },
+    composeFieldValidators(validators) {
+      return (...args) =>
+        validators.reduce(
+          (error, validation) => error || validation(...args),
+          undefined
+        );
     },
     filterFields(property, { checkForValue } = {}) {
       return this.fieldKeys.reduce((acc, path) => {

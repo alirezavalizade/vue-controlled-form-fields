@@ -3,14 +3,11 @@
     <span v-if="component">
       <!--https://github.com/vuejs/vue/issues/4763-->
       <input v-if="isNastiveInput" :type="type" v-bind="input" v-on="events" />
-      <textarea
-        v-else-if="isNativeTextarea"
-        v-bind="input"
-        v-on="events"
-      ></textarea>
+      <textarea v-else-if="isNativeTextarea" v-bind="input" v-on="events" />
       <select v-else-if="isNativeSelect" v-bind="input" v-on="events">
         <option
           v-for="option in options"
+          :key="option.data ? option.data.attrs.value : undefined"
           :selected="
             Array.isArray(fieldState.value)
               ? fieldState.value.includes(
@@ -19,7 +16,6 @@
               : false
           "
           :value="option.data ? option.data.attrs.value : undefined"
-          :key="option.data ? option.data.attrs.value : undefined"
           >{{ option.data ? option.data.attrs.value : undefined }}</option
         >
       </select>
@@ -53,7 +49,8 @@ export default {
     },
     component: {
       type: String,
-      validator: v => ['input', 'select', 'textarea'].includes(v)
+      default: '',
+      validator: v => ['input', 'select', 'textarea', ''].includes(v)
     },
     value: {
       type: [String, Number, Boolean, undefined],
@@ -77,20 +74,15 @@ export default {
       default: undefined
     }
   },
-  created() {
-    this.registerField(this.name, {
-      validate: this.validate
-    });
-  },
-  destroyed() {
-    this.unregisterField(this.name);
-  },
   computed: {
     params() {
       return {
         meta: this.fieldState,
         input: this.input,
-        events: this.events
+        events: this.events,
+        name: this.name,
+        value: this.fieldState.value,
+        change: this.events.change
       };
     },
     fieldState() {
@@ -153,6 +145,14 @@ export default {
       return Array.isArray(this.fieldState.value);
     }
   },
+  created() {
+    this.registerField(this.name, {
+      validate: this.validate
+    });
+  },
+  destroyed() {
+    this.unregisterField(this.name);
+  },
   methods: {
     changeFieldValue(v) {
       this.change(
@@ -163,7 +163,7 @@ export default {
   },
   provide() {
     return {
-      field: () => this.params
+      fieldState: () => this.params
     };
   }
 };

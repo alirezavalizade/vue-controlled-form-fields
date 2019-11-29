@@ -194,7 +194,6 @@ export default {
     },
     handleSubmit() {
       this.setInAll({ touched: true });
-      this.fieldKeys.forEach(this.handleFieldValidations);
       if (this.valid) {
         this.submitting = true;
         try {
@@ -262,6 +261,7 @@ export default {
           ...properties
         };
       });
+      this.fieldKeys.forEach(this.handleFieldValidations);
     },
     handleFormValidations() {
       if (this.validate) {

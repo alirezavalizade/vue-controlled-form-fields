@@ -1,3 +1,3 @@
-export { default as Form } from './Form.vue';
-export { default as Field } from './Field.vue';
-export { default as FieldStateMixin } from './FieldStateMixin.js';
+export { default as Form } from './components/Form.vue';
+export { default as Field } from './components/Field.vue';
+export { default as FieldStateMixin } from './mixins/FieldStateMixin.js';

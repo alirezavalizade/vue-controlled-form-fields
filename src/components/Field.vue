@@ -14,7 +14,7 @@
 </template>
 <script>
 import Native from './native/Native';
-import getValue from './getValue';
+import getValue from '../helpers/getValue';
 
 export default {
   name: 'Field',

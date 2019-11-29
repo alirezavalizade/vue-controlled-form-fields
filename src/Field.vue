@@ -1,29 +1,19 @@
 <template>
-  <span>
-    <span v-if="component">
-      <!--https://github.com/vuejs/vue/issues/4763-->
-      <input v-if="isNastiveInput" :type="type" v-bind="input" v-on="events" />
-      <textarea v-else-if="isNativeTextarea" v-bind="input" v-on="events" />
-      <select v-else-if="isNativeSelect" v-bind="input" v-on="events">
-        <option
-          v-for="option in options"
-          :key="option.data ? option.data.attrs.value : undefined"
-          :selected="
-            Array.isArray(fieldState.value)
-              ? fieldState.value.includes(
-                  option.data ? option.data.attrs.value : undefined
-                )
-              : false
-          "
-          :value="option.data ? option.data.attrs.value : undefined"
-          >{{ option.data ? option.data.attrs.value : undefined }}</option
-        >
-      </select>
-    </span>
-    <slot v-else v-bind="params" />
+  <native
+    v-if="component"
+    :input="input"
+    :events="events"
+    :isNativeSelect="isNativeSelect"
+    :isNativeInput="isNativeInput"
+    :isNativeTextarea="isNativeTextarea"
+    :field-value="fieldState.value"
+  />
+  <span v-else>
+    <slot v-bind="params" />
   </span>
 </template>
 <script>
+import Native from './native/Native';
 import getValue from './getValue';
 
 export default {
@@ -36,6 +26,9 @@ export default {
     'blur',
     'focus'
   ],
+  components: {
+    Native
+  },
   props: {
     name: {
       type: String,
@@ -116,33 +109,20 @@ export default {
       }
       return params;
     },
-    // helpers
-    options() {
-      if (!this.isNativeSelect) {
-        return undefined;
-      }
-      if (this.$slots) {
-        return this.$slots.default.filter(item => item.tag === 'option');
-      }
-      return [];
+    isNativeSelect() {
+      return this.component === 'select';
     },
-    isNastiveInput() {
+    isNativeInput() {
       return this.component === 'input';
     },
     isNativeTextarea() {
       return this.component === 'textarea';
     },
-    isNativeSelect() {
-      return this.component === 'select';
-    },
     isNativeCheckbox() {
-      return this.isNastiveInput && this.type === 'checkbox';
+      return this.isNativeInput && this.type === 'checkbox';
     },
     isNativeRadio() {
-      return this.isNastiveInput && this.type === 'radio';
-    },
-    isValueArray() {
-      return Array.isArray(this.fieldState.value);
+      return this.isNativeInput && this.type === 'radio';
     }
   },
   created() {

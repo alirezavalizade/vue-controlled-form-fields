@@ -228,10 +228,10 @@ export default {
     },
     initialize(initialValues) {
       const newKeys = this.keyify(initialValues);
-      newKeys.forEach(key => {
-        const path = key.includes('[')
-          ? key.substring(0, key.indexOf('['))
-          : key;
+      for (let i = 0; i < newKeys.length; i++) {
+        const path = newKeys[i].includes('[')
+          ? newKeys[i].substring(0, newKeys[i].indexOf('['))
+          : newKeys[i];
 
         if (this.isFieldExist(path)) {
           this.change(path, get(initialValues, path));
@@ -240,7 +240,7 @@ export default {
             value: get(initialValues, path)
           });
         }
-      });
+      }
     },
     // helpers
     setIn(name, property, value) {
@@ -255,31 +255,36 @@ export default {
       return this.getFieldState(name);
     },
     setInAll(properties = {}) {
-      this.fieldKeys.forEach(key => {
-        this.fields[key] = {
-          ...this.fields[key],
+      const keys = this.fieldKeys;
+      for (let i = 0; i < keys.length; i++) {
+        this.fields[keys[i]] = {
+          ...this.fields[keys[i]],
           ...properties
         };
-      });
-      this.fieldKeys.forEach(this.handleFieldValidations);
+        this.handleFieldValidations(keys[i]);
+      }
     },
     handleFormValidations() {
       if (this.validate) {
         const errors = this.validate(this.values);
         if (typeof errors === 'object') {
           const keyifiedErrors = this.keyify(errors);
-          keyifiedErrors.forEach(path => {
-            this.setIn(path, 'error', get(errors, path));
-          });
-          this.fieldKeys.forEach(path => {
+          for (let i = 0; i < keyifiedErrors.length; i++) {
+            this.setIn(
+              keyifiedErrors[i],
+              'error',
+              get(errors, keyifiedErrors[i])
+            );
+          }
+          for (let i = 0; i < this.fieldKeys.length; i++) {
             if (
-              !keyifiedErrors.includes(path) &&
-              typeof this.getIn(path, 'error') !== 'undefined' &&
-              !this.fields[path].validate
+              !keyifiedErrors.includes(this.fieldKeys[i]) &&
+              typeof this.getIn(this.fieldKeys[i], 'error') !== 'undefined' &&
+              !this.fields[this.fieldKeys[i]].validate
             ) {
-              this.setIn(path, 'error', undefined);
+              this.setIn(this.fieldKeys[i], 'error', undefined);
             }
-          });
+          }
         }
       }
     },
@@ -319,19 +324,23 @@ export default {
       return typeof this.fields[name] !== 'undefined';
     },
     keyify(obj, prefix = '', prevPrefix = '') {
-      return Object.keys(obj).reduce((res, el) => {
-        if (Array.isArray(obj[el])) {
-          return [...res, ...this.keyify(obj[el], `${prefix}${el}[`, `]`)];
-        } else if (
-          typeof obj[el] === 'object' &&
-          !obj[el].hasOwnProperty('touched')
-        ) {
-          return [
-            ...res,
-            ...this.keyify(obj[el], `${prefix}${el}.`, prevPrefix)
-          ];
+      return Object.keys(obj).reduce((res, key) => {
+        if (Array.isArray(obj[key])) {
+          return [...res, ...this.keyify(obj[key], `${prefix}${key}[`, `]`)];
+        } else if (typeof obj[key] === 'object') {
+          if (
+            !Object.keys(obj[key]).length &&
+            typeof Number(key) === 'number'
+          ) {
+            return [...res, `${prefix}${key}]`];
+          } else if (!obj[key].hasOwnProperty('touched')) {
+            return [
+              ...res,
+              ...this.keyify(obj[key], `${prefix}${key}.`, prevPrefix)
+            ];
+          }
         }
-        return [...res, `${prefix}${el}${prevPrefix}`];
+        return [...res, `${prefix}${key}${prevPrefix}`];
       }, []);
     },
     buildObjecFromKeys(objWithKeys, property) {

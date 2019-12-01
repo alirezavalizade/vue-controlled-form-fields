@@ -334,9 +334,12 @@ export default {
         return [...res, `${prefix}${el}${prevPrefix}`];
       }, []);
     },
-    buildObjecFromKeys(keys, property) {
-      return Object.keys(keys).reduce((acc, name) => {
-        set(acc, name, this.fields[name][property]);
+    buildObjecFromKeys(objWithKeys, property) {
+      return Object.keys(objWithKeys).reduce((acc, name) => {
+        const v = this.getIn(name, property);
+        if (!Array.isArray(v)) {
+          set(acc, name, v);
+        }
         return acc;
       }, {});
     }

@@ -44,6 +44,7 @@ export default {
   },
   created() {
     this.registerField(this.name, {
+      value: [],
       validate: this.validate
     });
   },

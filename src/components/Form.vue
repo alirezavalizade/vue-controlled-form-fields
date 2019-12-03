@@ -9,6 +9,7 @@ import FormStateMixin from './mixins/FormStateMixin';
 import SubscribeMixin from './mixins/SubscribeMixin';
 import InitializeMixin from './mixins/InitializeMixin';
 import ValidationMixin from './mixins/ValidationMixin';
+import HooksMixin from './mixins/HooksMixin';
 import HelpersMixin from './mixins/HelpersMixin';
 
 export default {
@@ -36,21 +37,18 @@ export default {
     SubscribeMixin,
     InitializeMixin,
     ValidationMixin,
+    HooksMixin,
     HelpersMixin
   ],
-  created() {
-    this.$emit('created', this.form);
-  },
+
   provide() {
     return {
-      // methods
       registerField: this.registerField,
       unregisterField: this.unregisterField,
       focus: this.focus,
       blur: this.blur,
       change: this.change,
       getFieldState: this.getFieldState
-      // computed
     };
   }
 };

@@ -177,7 +177,7 @@ export default {
       };
     },
     change(name, value) {
-      this.fields[name].value = value;
+      this.setIn(name, 'value', value);
       if (!this.getIn(name, 'modified')) {
         this.fields[name].modified = true;
       }

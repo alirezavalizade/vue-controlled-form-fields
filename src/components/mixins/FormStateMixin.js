@@ -196,5 +196,15 @@ export default {
       this.setIn(name, 'active', false);
       this.setIn(name, 'touched', true);
     }
+  },
+  provide() {
+    return {
+      registerField: this.registerField,
+      unregisterField: this.unregisterField,
+      focus: this.focus,
+      blur: this.blur,
+      change: this.change,
+      getFieldState: this.getFieldState
+    };
   }
 };

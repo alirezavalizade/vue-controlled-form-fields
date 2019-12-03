@@ -39,17 +39,6 @@ export default {
     ValidationMixin,
     HooksMixin,
     HelpersMixin
-  ],
-
-  provide() {
-    return {
-      registerField: this.registerField,
-      unregisterField: this.unregisterField,
-      focus: this.focus,
-      blur: this.blur,
-      change: this.change,
-      getFieldState: this.getFieldState
-    };
-  }
+  ]
 };
 </script>

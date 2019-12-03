@@ -31,11 +31,27 @@ export default {
     return {
       fields: {},
       active: undefined,
-      submitting: false
+      submitting: false,
+      subscribers: [],
+      form: {
+        handleSubmit: this.handleSubmit,
+        initialize: this.initialize,
+        reset: this.reset,
+        change: this.changeFromForm,
+        focus: this.focus,
+        blur: this.blur,
+        subscribe: this.handleSubscribe
+      }
     };
   },
   computed: {
     formState() {
+      return {
+        ...this.formStateReport,
+        form: this.form
+      };
+    },
+    formStateReport() {
       return {
         dirty: this.dirty,
         valid: this.valid,
@@ -51,15 +67,7 @@ export default {
         dirtyFields: this.dirtyFields,
         modifiedFields: this.modifiedFields,
         visitedFields: this.visitedFields,
-        initialValues: this.initialValues,
-        form: {
-          handleSubmit: this.handleSubmit,
-          initialize: this.initialize,
-          reset: this.reset,
-          change: this.changeFromForm,
-          focus: this.focus,
-          blur: this.blur
-        }
+        initialValues: this.initialValues
       };
     },
     dirty() {
@@ -119,10 +127,14 @@ export default {
           this.setInAll({ dirty: false });
         }
       }
+    },
+    values() {
+      this.notifySubscribers();
     }
   },
   created() {
     this.initialize(this.initialValues);
+    this.$emit('created', this.form);
   },
   methods: {
     registerField(name, config) {
@@ -201,6 +213,18 @@ export default {
         } finally {
           this.submitting = false;
         }
+      }
+    },
+    handleSubscribe(subscriber) {
+      this.subscribers.push(subscriber);
+
+      return () => {
+        this.subscribers.pop();
+      };
+    },
+    notifySubscribers() {
+      for (var i = 0; i < this.subscribers.length; i++) {
+        this.subscribers[i](this.formStateReport);
       }
     },
     reset() {

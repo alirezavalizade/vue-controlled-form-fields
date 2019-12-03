@@ -1,7 +1,7 @@
 export default {
   data() {
     return {
-      subscribers: []
+      subscribers: {}
     };
   },
   watch: {
@@ -11,15 +11,18 @@ export default {
   },
   methods: {
     handleSubscribe(subscriber) {
-      this.subscribers.push(subscriber);
+      const subscriberID = Math.random();
+      this.$set(this.subscribers, subscriberID, subscriber);
 
       return () => {
-        this.subscribers.pop();
+        this.$delete(this.subscribers, subscriberID);
       };
     },
     notifySubscribers() {
-      for (var i = 0; i < this.subscribers.length; i++) {
-        this.subscribers[i](this.formStateReport);
+      // TODO: Add custom listeners
+      const subscriberIDs = Object.keys(this.subscribers);
+      for (var i = 0; i < subscriberIDs.length; i++) {
+        this.subscribers[subscriberIDs](this.formStateReport);
       }
     }
   }

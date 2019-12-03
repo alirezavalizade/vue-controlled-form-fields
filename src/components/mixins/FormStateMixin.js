@@ -1,0 +1,200 @@
+import get from 'lodash.get';
+import isEqual from 'lodash.isequal';
+import buildObjecFromKeys from '../../helpers/buildObjecFromKeys';
+
+export default {
+  data() {
+    return {
+      fields: {},
+      active: undefined,
+      submitting: false,
+      form: {
+        handleSubmit: this.handleSubmit,
+        initialize: this.initialize,
+        reset: this.reset,
+        change: this.changeFromForm,
+        focus: this.focus,
+        blur: this.blur,
+        subscribe: this.handleSubscribe
+      }
+    };
+  },
+  computed: {
+    formState() {
+      return {
+        ...this.formStateReport,
+        form: this.form
+      };
+    },
+    formStateReport() {
+      return {
+        dirty: this.dirty,
+        valid: this.valid,
+        invalid: this.invalid,
+        visited: this.visited,
+        modified: this.modified,
+        pristine: this.pristine,
+        touched: this.touched,
+        active: this.active,
+        submitting: this.submitting,
+        values: this.values,
+        errors: this.errors,
+        dirtyFields: this.dirtyFields,
+        modifiedFields: this.modifiedFields,
+        visitedFields: this.visitedFields,
+        initialValues: this.initialValues
+      };
+    },
+    dirty() {
+      return !!Object.keys(this.dirtyFields).length;
+    },
+    valid() {
+      return Object.keys(this.errors).length === 0;
+    },
+    invalid() {
+      return !this.valid;
+    },
+    visited() {
+      return Object.keys(this.visitedFields).length === 0;
+    },
+    modified() {
+      return Object.keys(this.modifiedFields).length > 0;
+    },
+    pristine() {
+      return (
+        Object.keys(this.filterFields('pristine')).length ===
+        this.fieldKeys.length
+      );
+    },
+    touched() {
+      return Object.keys(this.filterFields('touched')).length > 0;
+    },
+    dirtyFields() {
+      return this.filterFields('dirty');
+    },
+    modifiedFields() {
+      return this.filterFields('modified');
+    },
+    visitedFields() {
+      return this.filterFields('visited');
+    },
+    errors() {
+      return buildObjecFromKeys(
+        this.filterFields('error', { checkForValue: true }),
+        this.getIn('error')
+      );
+    },
+    values() {
+      return buildObjecFromKeys(
+        this.filterFields('value', { checkForValue: true }),
+        this.getIn('value')
+      );
+    },
+    fieldKeys() {
+      return Object.keys(this.fields);
+    }
+  },
+  methods: {
+    registerField(name, config) {
+      if (!this.isFieldExist(name)) {
+        this.fields = {
+          ...this.fields,
+          ...this.initFieldState(name, config)
+        };
+      } else {
+        this.setConfig(name, config);
+      }
+      this.handleFormValidations();
+      this.handleFieldValidations(name);
+    },
+    unregisterField(name) {
+      this.fields[name] = undefined;
+    },
+    initFieldState(name, { value = undefined, validate } = {}) {
+      return {
+        [name]: {
+          name,
+          value,
+          validate,
+          active: false,
+          dirty: false,
+          error: undefined,
+          invalid: false,
+          modified: false,
+          pristine: false,
+          touched: false,
+          valid: false,
+          visited: false
+        }
+      };
+    },
+    setConfig(name, config = {}) {
+      if (!isEqual(config.validate, this.fields[name].validate)) {
+        this.setIn(name, 'validate', config.validate);
+      }
+    },
+    getFieldState(name) {
+      const state = get(this.fields, name);
+      const pristine =
+        typeof this.initialValues === 'object'
+          ? isEqual(get(this.initialValues, name), get(state, 'value'))
+          : true;
+      return {
+        ...state,
+        validate: undefined,
+        dirty: !pristine,
+        pristine
+      };
+    },
+    change(name, value) {
+      this.setIn(name, 'value', value);
+      if (!this.getIn(name, 'modified')) {
+        this.setIn(name, 'modified', true);
+      }
+      this.handleFormValidations();
+      this.handleFieldValidations(name);
+    },
+    changeFromForm(name, value) {
+      // need to register
+      if (!this.fields.hasOwnProperty(name)) {
+        this.registerField(name, value);
+      } else {
+        this.change(name, value);
+      }
+    },
+    handleSubmit() {
+      this.setInAll({ touched: true });
+      if (this.valid) {
+        this.submitting = true;
+        try {
+          return this.submit(this.values);
+        } finally {
+          this.submitting = false;
+        }
+      }
+    },
+    reset() {
+      this.setInAll({
+        value: undefined,
+        dirty: false,
+        error: undefined,
+        invalid: false,
+        modified: false,
+        pristine: false,
+        touched: false,
+        valid: false,
+        visited: false
+      });
+    },
+    focus(name) {
+      this.active = name;
+      this.setIn(name, 'active', true);
+      this.setIn(name, 'visited', true);
+    },
+    blur(name) {
+      this.active = undefined;
+      this.setIn(name, 'active', false);
+      this.setIn(name, 'touched', true);
+    }
+  }
+};

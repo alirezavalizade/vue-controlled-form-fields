@@ -1,6 +1,7 @@
 import get from 'lodash.get';
 import isEqual from 'lodash.isequal';
 import buildObjecFromKeys from '../../helpers/buildObjecFromKeys';
+import fieldState from '../../helpers/fieldState';
 
 export default {
   data() {
@@ -15,7 +16,10 @@ export default {
         change: this.changeFromForm,
         focus: this.focus,
         blur: this.blur,
-        subscribe: this.handleSubscribe
+        subscribe: this.handleSubscribe,
+        getFieldState: this.getFieldState,
+        getFormState: this.getFormState,
+        getRegisteredFields: this.getRegisteredFields
       }
     };
   },
@@ -81,17 +85,19 @@ export default {
     errors() {
       return buildObjecFromKeys(
         this.filterFields('error', { checkForValue: true }),
-        this.getIn('error')
+        this.getIn,
+        'error'
       );
     },
     values() {
       return buildObjecFromKeys(
         this.filterFields('value', { checkForValue: true }),
-        this.getIn('value')
+        this.getIn,
+        'value'
       );
     },
     fieldKeys() {
-      return Object.keys(this.fields);
+      return this.getRegisteredFields();
     }
   },
   methods: {
@@ -112,20 +118,7 @@ export default {
     },
     initFieldState(name, { value = undefined, validate } = {}) {
       return {
-        [name]: {
-          name,
-          value,
-          validate,
-          active: false,
-          dirty: false,
-          error: undefined,
-          invalid: false,
-          modified: false,
-          pristine: false,
-          touched: false,
-          valid: false,
-          visited: false
-        }
+        [name]: fieldState({ name, value, validate })
       };
     },
     setConfig(name, config = {}) {
@@ -145,6 +138,12 @@ export default {
         dirty: !pristine,
         pristine
       };
+    },
+    getFormState() {
+      return this.formStateReport;
+    },
+    getRegisteredFields() {
+      return Object.keys(this.fields);
     },
     change(name, value) {
       this.setIn(name, 'value', value);

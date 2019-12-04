@@ -10,6 +10,7 @@
     <br />
   </h1>
 
+[![Node version](https://img.shields.io/node/v/[NPM-MODULE-NAME].svg?style=flat)](http://nodejs.org/download/)
 [![Build Status](https://travis-ci.com/alirezavalizade/vue-controlled-form-fields.svg?token=h4WVYN9AxSAEz9ZViSGz&branch=master)](https://travis-ci.com/alirezavalizade/vue-controlled-form-fields)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 

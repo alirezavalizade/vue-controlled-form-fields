@@ -1,3 +1,3 @@
-const isEmptyString = value => value === '';
+const isEmptyString = value => typeof value === 'string' && value === '';
 
 export default isEmptyString;

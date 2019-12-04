@@ -10,7 +10,7 @@ node_js:
 script:
   - yarn test:unit
 after_success:
-  - yarn build
+  - yarn codecov
 branches:
   only:
     - master

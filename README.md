@@ -5,7 +5,7 @@
     🙌
     <br />
     vue-controlled-form-fields
-    [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+[![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
     <br />
     <br />
     <br />

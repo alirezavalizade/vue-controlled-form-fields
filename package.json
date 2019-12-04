@@ -11,7 +11,7 @@
     "serve": "vue-cli-service serve ./dev/index.js",
     "build": "vue-cli-service build --target lib --inline-vue ./src/index.js",
     "build:dev": "vue-cli-service build ./dev/index.js",
-    "test:unit": "vue-cli-service test:unit",
+    "test:unit": "vue-cli-service test:unit --coverage",
     "lint": "vue-cli-service lint",
     "codecov": "./node_modules/.bin/nyc report --reporter=text-lcov | ./node_modules/.bin/codecov --pipe"
   },

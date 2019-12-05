@@ -13,7 +13,7 @@
     "build:dev": "vue-cli-service build ./dev/index.js",
     "test:unit": "vue-cli-service test:unit --coverage",
     "lint": "vue-cli-service lint",
-    "codecov": "./node_modules/.bin/nyc report --reporter=text-lcov | ./node_modules/.bin/codecov --pipe"
+    "codecov": "cat ./coverage/lcov.info | ./node_modules/.bin/codecov --pipe"
   },
   "author": "Alireza Valizade <alirezavalizade0@gmail.com> (https://github.com/alirezavalizade)",
   "license": "MIT",
@@ -50,7 +50,6 @@
     "less-loader": "^5.0.0",
     "lint-staged": "^9.4.2",
     "node-sass": "^4.13.0",
-    "nyc": "^14.1.1",
     "prettier": "^1.18.2",
     "sass-loader": "^8.0.0",
     "vue-template-compiler": "^2.6.10"

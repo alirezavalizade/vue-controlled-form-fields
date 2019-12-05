@@ -114,7 +114,9 @@ export default {
       this.handleFieldValidations(name);
     },
     unregisterField(name) {
-      this.fields[name] = undefined;
+      if (this.destroyOnUnregister) {
+        this.fields[name] = undefined;
+      }
     },
     initFieldState(name, { value = undefined, validate } = {}) {
       return {
@@ -150,8 +152,10 @@ export default {
       if (!this.getIn(name, 'modified')) {
         this.setIn(name, 'modified', true);
       }
-      this.handleFormValidations();
-      this.handleFieldValidations(name);
+      if (!this.validateOnBlur) {
+        this.handleFormValidations();
+        this.handleFieldValidations(name);
+      }
     },
     changeFromForm(name, value) {
       // need to register
@@ -194,6 +198,10 @@ export default {
       this.active = undefined;
       this.setIn(name, 'active', false);
       this.setIn(name, 'touched', true);
+      if (this.validateOnBlur) {
+        this.handleFormValidations();
+        this.handleFieldValidations(name);
+      }
     }
   },
   provide() {

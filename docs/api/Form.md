@@ -337,7 +337,7 @@ Has several methods for manipulating the state and getting state or specific pro
 </tbody>
 </table>
 
-We can access to form state in two ways:
+#### We can access to form state in two ways:
 
 1. `slot-scope` in template
 

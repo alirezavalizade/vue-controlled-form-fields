@@ -1,3 +1,4 @@
+<br/>
 # `<Form />`
 
 ```js
@@ -389,15 +390,149 @@ Your listeners can be specific and listen only for one key and the changes of it
 
 ## Form Methods
 
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Methods</th>
+<th style="text-align:left">Accepted Parameters</th>
+<th style="text-align:left">Example</th>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+<td style="text-align:left">handleSubmit</td>
+<td style="text-align:left"><code>-</code></td>
+<td style="text-align:left"><a href="">Link</a></td>
+</tr>
+<tr >
+<td style="text-align:left" colspan="3">
+Will trigger the submit method from props
+</td>
+</tr>
+
+<tr>
+<td style="text-align:left">initialize</td>
+<td style="text-align:left">
+<code>Object</code> or <code>Function(currentValues => ({}))</code>
+</td>
+<td style="text-align:left"><a href="">Link</a></td>
+</tr>
+<tr >
+<td style="text-align:left" colspan="3">
+Will initialize the form, You can pass Object or Function. If you pass function then you can access to current values of form. And also take a look at 
+<a href="">keepDirtyOnReinitialize</a>
+</td>
+</tr>
+
+<tr>
+<td style="text-align:left">reset</td>
+<td style="text-align:left">
+<code>-</code>
+</td>
+<td style="text-align:left"><a href="">Link</a></td>
+</tr>
+<tr >
+<td style="text-align:left" colspan="3">
+Will reset the form state and fields states. Like they registered again.
+</td>
+</tr>
+
+<tr>
+<td style="text-align:left">change</td>
+<td style="text-align:left">
+<code>(name: string, value: any)</code>
+</td>
+<td style="text-align:left"><a href="">Link</a></td>
+</tr>
+<tr >
+<td style="text-align:left" colspan="3">
+Will change the value of field directly. If you pass a name which is not registered before, Will register it. You should use object dot notation for nested properties.
+</td>
+</tr>
+
+<tr>
+<td style="text-align:left">focus</td>
+<td style="text-align:left">
+<code>(name: string)</code>
+</td>
+<td style="text-align:left"><a href="">Link</a></td>
+</tr>
+<tr >
+<td style="text-align:left" colspan="3">
+Will change some properties in field state + form state, e.g touched, visited and more. Will be useful when you want to show validation errors.
+By calling this method the name which passed as first argument will set in to the <code>active</code> property in form state.
+You should use object dot notation for nested properties.
+</td>
+</tr>
+
+<tr>
+<td style="text-align:left">blur</td>
+<td style="text-align:left">
+<code>(name: string)</code>
+</td>
+<td style="text-align:left"><a href="">Link</a></td>
+</tr>
+<tr >
+<td style="text-align:left" colspan="3">
+Will change some properties in field state + form state, e.g touched, visited and more. Will be useful when you want to show validation errors.
+By calling this method the name which passed as first argument will set in to the <code>active</code> property in form state.
+You should use object dot notation for nested properties.
+</td>
+</tr>
+
+<tr>
+<td style="text-align:left">subscribe</td>
+<td style="text-align:left">
+<code>(Function(formState => {}), { subscription: Array<string> })</code>
+</td>
+<td style="text-align:left"><a href="">Link</a></td>
+</tr>
+<tr >
+<td style="text-align:left" colspan="3">
+Will subscribe the form state and will pass the form state as first argument.
+You can pass <code>subscription</code> to list only for specific changes based on items you passed in second argument.
+</td>
+</tr>
+
+<tr>
+<td style="text-align:left">getFieldState</td>
+<td style="text-align:left">
+<code>(name: string)</code>
+</td>
+<td style="text-align:left"><a href="">Link</a></td>
+</tr>
+<tr >
+<td style="text-align:left" colspan="3">
+Will return current field state.
+</td>
+</tr>
+
+<tr>
+<td style="text-align:left">getFormState</td>
+<td style="text-align:left">
+<code>-</code>
+</td>
+<td style="text-align:left"><a href="">Link</a></td>
+</tr>
+<tr >
+<td style="text-align:left" colspan="3">
+Will return current form state.
+</td>
+</tr>
+
+<tr>
+<td style="text-align:left">getRegisteredFields</td>
+<td style="text-align:left">
+<code>-</code>
+</td>
+<td style="text-align:left"><a href="">Link</a></td>
+</tr>
+<tr >
+<td style="text-align:left" colspan="3">
+Will return Array of strings which are name of fields which registered in form state.
+</td>
+</tr>
+
+</tbody>
+</table>

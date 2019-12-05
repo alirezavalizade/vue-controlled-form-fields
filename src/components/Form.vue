@@ -29,6 +29,14 @@ export default {
     validate: {
       type: [Function, undefined],
       default: undefined
+    },
+    validateOnBlur: {
+      type: Boolean,
+      default: false
+    },
+    destroyOnUnregister: {
+      type: Boolean,
+      default: true
     }
   },
   mixins: [

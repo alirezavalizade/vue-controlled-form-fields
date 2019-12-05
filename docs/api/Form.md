@@ -387,7 +387,7 @@ export default {
 
 Your listeners can be specific and listen only for one key and the changes of it, like `@errors`, `@values`. Actually your `$listener`s are listening to changes by `form.subscribe(callback, { ...subscription })`.
 
-## Form Methods
+## Form `Methods()`
 
 <table>
 <thead>

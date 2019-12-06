@@ -159,7 +159,7 @@ export default {
       }
     },
     handleSubmit() {
-      this.setInAll({ touched: true });
+      this.setInAll({ touched: true, visited: true });
       if (this.valid) {
         this.submitting = true;
         try {

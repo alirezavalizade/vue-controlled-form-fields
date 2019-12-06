@@ -59,7 +59,7 @@ export default {
       return !this.valid;
     },
     visited() {
-      return Object.keys(this.visitedFields).length === 0;
+      return Object.keys(this.visitedFields).length > 0;
     },
     modified() {
       return Object.keys(this.modifiedFields).length > 0;

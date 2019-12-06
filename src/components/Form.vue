@@ -11,6 +11,7 @@ import InitializeMixin from './mixins/InitializeMixin';
 import ValidationMixin from './mixins/ValidationMixin';
 import HooksMixin from './mixins/HooksMixin';
 import HelpersMixin from './mixins/HelpersMixin';
+import getDefaultSubscriptionItems from '../helpers/getDefaultSubscriptionItems';
 
 export default {
   props: {
@@ -37,6 +38,10 @@ export default {
     destroyOnUnregister: {
       type: Boolean,
       default: true
+    },
+    subscription: {
+      type: Object,
+      default: () => getDefaultSubscriptionItems()
     }
   },
   mixins: [

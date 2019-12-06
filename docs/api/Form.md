@@ -4,7 +4,7 @@
 import { Form as CForm } from 'vue-controlled-form-fields';
 ```
 
-**Form is a state manager and provider which uses the Vue's power and Reactivity to provide the state and functionality to children or the component which the Form has been defined and used.**
+**Form is a subscription-based state manager and provider which uses the Vue's power and Reactivity to provide the state and functionality to children or the component which the Form has been defined and used.**
 
 ## Form `:props`
 

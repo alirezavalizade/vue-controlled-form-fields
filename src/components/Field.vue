@@ -44,7 +44,8 @@ export default {
     type: {
       type: String,
       default: 'text',
-      validator: v => ['checkbox', 'text', 'email', 'radio'].includes(v)
+      validator: v =>
+        ['checkbox', 'text', 'email', 'password', 'radio'].includes(v)
     },
     component: {
       type: String,

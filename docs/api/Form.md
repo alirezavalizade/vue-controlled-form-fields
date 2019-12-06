@@ -25,7 +25,7 @@ import { Form as CForm } from 'vue-controlled-form-fields';
 <td style="text-align:left"><a href="">Link</a></td>
 </tr>
 <tr >
-<td style="text-align:left" colspan="4=">
+<td style="text-align:left" colspan="4">
 Will return current values of the form in case of there wasn't any validation errors in form state. The touched `property` in all fields states will be set to true. If you return a `Promise` in submit function `submitting` property in form state will be set to true after resolving will be set to false.
 </td>
 </tr>
@@ -37,7 +37,7 @@ Will return current values of the form in case of there wasn't any validation er
 <td style="text-align:left"><a href="">Link</a></td>
 </tr>
 <tr >
-<td style="text-align:left" colspan="4=">
+<td style="text-align:left" colspan="4">
 The form will only re-render when these fields in state changes. Could be useful for performance. Also when you use <code>form.subscribe()</code> you can pass subscription items in second parameter. If you pass nothing then everything will be subscribed.
 </td>
 </tr>
@@ -49,7 +49,7 @@ The form will only re-render when these fields in state changes. Could be useful
 <td style="text-align:left"><a href="">Link</a></td>
 </tr>
 <tr >
-<td style="text-align:left" colspan="4=">
+<td style="text-align:left" colspan="4">
 Will initialize the form on created life cycle, if it's changes the form will
 re-initialized. the fields with property names will be registered before mounting the field components.
 </td>
@@ -61,7 +61,7 @@ re-initialized. the fields with property names will be registered before mountin
 <td style="text-align:left"><a href="">Link</a></td>
 </tr>
 <tr >
-<td style="text-align:left" colspan="4=">
+<td style="text-align:left" colspan="4">
 When you pass true, After re-initializing the form, The dirty `property` in all fields states won't change. will be same as it was before. But by default which is false, after re-initializing dirty properties will be set to false.
 </td>
 </tr>
@@ -72,7 +72,7 @@ When you pass true, After re-initializing the form, The dirty `property` in all 
 <td style="text-align:left"><a href="">Link</a></td>
 </tr>
 <tr >
-<td style="text-align:left" colspan="4=">
+<td style="text-align:left" colspan="4">
 You can validate your fields by passing pure functions and returning an object with the same name of your field. 
 </td>
 </tr>
@@ -83,7 +83,7 @@ You can validate your fields by passing pure functions and returning an object w
 <td style="text-align:left"><a href="">Link</a></td>
 </tr>
 <tr >
-<td style="text-align:left" colspan="4=">
+<td style="text-align:left" colspan="4">
 Validation functions will be called after triggering @blur function. This could be effective when you have more than 1000 fields at the same page.
 </td>
 </tr>
@@ -94,7 +94,7 @@ Validation functions will be called after triggering @blur function. This could 
 <td style="text-align:left"><a href="">Link</a></td>
 </tr>
 <tr >
-<td style="text-align:left" colspan="4=">
+<td style="text-align:left" colspan="4">
 If you pass it true, When the field has been removed from DOM the state of field will be there.
 </td>
 </tr>
@@ -120,7 +120,7 @@ If you pass it true, When the field has been removed from DOM the state of field
 <td style="text-align:left"><a href="">Link</a></td>
 </tr>
 <tr >
-<td style="text-align:left" colspan="4=">
+<td style="text-align:left" colspan="4">
 This event occurs before rendering the form in DOM. Could be useful when you need to use subscribe the form state or use form methods in the current component which the form has been defined.
 </td>
 </tr>
@@ -131,7 +131,7 @@ This event occurs before rendering the form in DOM. Could be useful when you nee
 <td style="text-align:left"><a href="">Link</a></td>
 </tr>
 <tr >
-<td style="text-align:left" colspan="4=">
+<td style="text-align:left" colspan="4">
 You can listen to changes of single property of form state. e.g. <code>@values</code>,
 <code>@dirty</code>, <code>@submitting</code>. <br/>
 Won't be triggered if you do not pass the property it as subscription items. If you pass nothing by default will be trigger.

@@ -490,7 +490,7 @@ You should use object dot notation for nested properties.
 <tr >
 <td style="text-align:left" colspan="3">
 Will subscribe the form state and will pass the form state as first argument.
-You can pass <code>subscription</code> to list only for specific changes based on items you passed in second argument.
+You can pass <code>subscription</code> to list only for specific changes based on items you passed in second argument. Will return a function for unsubscribing the state.
 </td>
 </tr>
 

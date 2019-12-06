@@ -32,7 +32,7 @@ Will return current values of the form in case of there wasn't any validation er
 
 <tr>
 <td style="text-align:left">subscription</td>
-<td style="text-align:left"><code>{ [string]: Boolean }</code></td>
+<td style="text-align:left"><code>{ [string]: boolean }</code></td>
 <td style="text-align:left"><code>undefined</code></td>
 <td style="text-align:left"><a href="">Link</a></td>
 </tr>
@@ -496,7 +496,7 @@ You should use object dot notation for nested properties.
 <tr>
 <td style="text-align:left">subscribe</td>
 <td style="text-align:left">
-<code>(Function(formState => {}),  { [string]: Boolean })</code>
+<code>(Function(formState => {}),  { [string]: boolean })</code>
 </td>
 <td style="text-align:left"><a href="">Link</a></td>
 </tr>

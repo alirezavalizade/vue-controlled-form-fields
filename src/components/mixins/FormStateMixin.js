@@ -7,7 +7,6 @@ export default {
   data() {
     return {
       fields: {},
-      active: undefined,
       submitting: false,
       form: {
         handleSubmit: this.handleSubmit,
@@ -36,6 +35,12 @@ export default {
         acc[key] = this[key];
         return acc;
       }, {});
+    },
+    active() {
+      const activeField = Object.values(this.fields).find(
+        field => field.active
+      );
+      return activeField && activeField.name;
     },
     dirty() {
       return !!Object.keys(this.dirtyFields).length;
@@ -178,12 +183,10 @@ export default {
       });
     },
     focus(name) {
-      this.active = name;
       this.setIn(name, 'active', true);
       this.setIn(name, 'visited', true);
     },
     blur(name) {
-      this.active = undefined;
       this.setIn(name, 'active', false);
       this.setIn(name, 'touched', true);
       if (this.validateOnBlur) {

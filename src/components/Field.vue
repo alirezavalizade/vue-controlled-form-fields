@@ -15,6 +15,8 @@
 <script>
 import Native from './native/Native';
 import getValue from '../helpers/getValue';
+import { fieldSubscriptionItems } from '../helpers/subscriptionItems';
+import getDefaultSubscriptionItems from '../helpers/getDefaultSubscriptionItems';
 
 export default {
   name: 'Field',
@@ -33,6 +35,10 @@ export default {
     name: {
       type: String,
       required: true
+    },
+    subscription: {
+      type: Object,
+      default: () => getDefaultSubscriptionItems(fieldSubscriptionItems)
     },
     // ONLY FOR HTML ELEMENTS
     type: {
@@ -79,7 +85,17 @@ export default {
       };
     },
     fieldState() {
-      return this.getFieldState(this.name);
+      if (this.subscription.default) {
+        return this.getFieldState(this.name);
+      }
+      const keys = Object.keys(this.subscription);
+      const state = this.getFieldState(this.name);
+      return Object.keys(state)
+        .filter(key => keys.includes(key))
+        .reduce((acc, key) => {
+          acc[key] = state[key];
+          return acc;
+        }, {});
     },
     events() {
       return {

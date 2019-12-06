@@ -29,6 +29,19 @@ import { Form as CForm } from 'vue-controlled-form-fields';
 Will return current values of the form in case of there wasn't any validation errors in form state. The touched `property` in all fields states will be set to true. If you return a `Promise` in submit function `submitting` property in form state will be set to true after resolving will be set to false.
 </td>
 </tr>
+
+<tr>
+<td style="text-align:left">subscription</td>
+<td style="text-align:left"><code>{ [string]: Boolean }</code></td>
+<td style="text-align:left"><code>undefined</code></td>
+<td style="text-align:left"><a href="">Link</a></td>
+</tr>
+<tr >
+<td style="text-align:left" colspan="4=">
+The form will only re-render when these fields in state changes. Could be useful for performance. Also when you use <code>form.subscribe()</code> you can pass subscription items in second parameter. If you pass nothing then everything will be subscribed.
+</td>
+</tr>
+
 <tr>
 <td style="text-align:left">initialValues</td>
 <td style="text-align:left"><code>Object</code></td>
@@ -483,7 +496,7 @@ You should use object dot notation for nested properties.
 <tr>
 <td style="text-align:left">subscribe</td>
 <td style="text-align:left">
-<code>(Function(formState => {}), { subscription: Array<string> })</code>
+<code>(Function(formState => {}),  { [string]: Boolean })</code>
 </td>
 <td style="text-align:left"><a href="">Link</a></td>
 </tr>

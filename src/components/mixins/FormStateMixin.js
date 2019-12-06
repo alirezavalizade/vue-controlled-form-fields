@@ -31,23 +31,11 @@ export default {
       };
     },
     formStateReport() {
-      return {
-        dirty: this.dirty,
-        valid: this.valid,
-        invalid: this.invalid,
-        visited: this.visited,
-        modified: this.modified,
-        pristine: this.pristine,
-        touched: this.touched,
-        active: this.active,
-        submitting: this.submitting,
-        values: this.values,
-        errors: this.errors,
-        dirtyFields: this.dirtyFields,
-        modifiedFields: this.modifiedFields,
-        visitedFields: this.visitedFields,
-        initialValues: this.initialValues
-      };
+      const keys = Object.keys(this.subscription);
+      return keys.reduce((acc, key) => {
+        acc[key] = this[key];
+        return acc;
+      }, {});
     },
     dirty() {
       return !!Object.keys(this.dirtyFields).length;

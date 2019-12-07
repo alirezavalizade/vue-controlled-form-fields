@@ -567,7 +567,7 @@ This means you want to create a component in different location and file and use
 
 ```js
 {
-	meta: fieldState,
+  meta: fieldState,
     events: {
       change,
       focus,

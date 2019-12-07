@@ -149,4 +149,4 @@ export default {
 </script>
 ```
 
-<a href="../Field.md">Please see `<Field />` documents.</a>
+<a href="./Field.md">Please see `<Field />` documents.</a>

@@ -4,7 +4,7 @@
 import { Field } from 'vue-controlled-form-fields';
 ```
 
-#### **Field is a reactive and subscription-based, injector and also provider. Field can be used in 3 different ways.**
+### **Field is a reactive and subscription-based, injector and also provider. Field can be used in 3 different ways.**
 
 ## Usage
 

@@ -84,6 +84,23 @@ import { Field } from 'vue-controlled-form-fields';
 For showing validation errors you can use form's state using `slot-scope`, like this:
 
 ```js
+<c-form>
+	<div slot-scope="{ errors, visitedFields }">
+	   <div>
+          <label>Simple Default Input</label>
+          <field
+          	:validate="required"
+            name="user.name"
+            component="input"
+            type="text"
+            placeholder="username"
+          />
+          <span v-if="errors.user.name && visitedFields['user.name']">
+          	{{ errors.user.name }}
+          </span>
+      </div>
+    </div>
+</c-form>
 ```
 
 #### 2. Custom Native components

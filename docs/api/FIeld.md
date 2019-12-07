@@ -11,82 +11,79 @@ import { Field } from 'vue-controlled-form-fields';
 #### 1. Native components
 
 ```js
-  <c-form :submit="onSubmit">
-      <div>
-          <label>Simple Default Input</label>
-          <field
-              :validate="required"
-              name="user.name"
-              component="input"
-              type="text"
-              placeholder="username"
-          />
-      </div>
-      <div>
-          <label>Boolean Checkbox</label>
-          <field name="vegetarian" component="checkbox" />
-      </div>
-      <div>
-          <label>Multi Checkboxes (The value will be array of selected checkboxes)</label>
-          <field name="foods" component="input" type="checkbox" value="chicken 🐥" />
-          <field name="foods" component="input" type="checkbox" value="Fesenjoon 🥜" />
-          <field name="foods" component="input" type="checkbox" value="Ghormesabzi 😍" />
-          <field name="foods" component="input" type="checkbox" value="Gheyme 🐄" />
-      </div>
-      <div>
-          <label>Radio</label>
-          <field name="gender" component="input" type="radio" value="male 👨‍💼" />
-          <field name="gender" component="input" type="radio" value="female 👩‍🔧" />
-      </div>
-      <div>
-          <label>Select</label>
-          <field component="select" name="country">
-             <option>select</option>
-             <option value="australia">Australia</option>
-             <option value="canada">Canada</option>
-             <option value="usa">USA</option>
-           </field>
-      </div>
-      <div>
-          <label>Multiple select</label>
-          <field component="select" name="nationality" multiple>
-             <option>select</option>
-             <option value="australia">Australia</option>
-             <option value="canada">Canada</option>
-             <option value="usa">USA</option>
-           </field>
-      </div>
-      <div>
-          <label>Textarea</label>
-          <field
-              component="story"
-              name="subject"
-              placeholder="Write something.."
-          />
-      </div>
-  </c-form>
+<c-form :submit="onSubmit">
+    <div>
+      <label>Simple Default Input</label>
+      <field
+        :validate="required"
+        name="user.name"
+        component="input"
+        type="text"
+        placeholder="username"
+      />
+    </div>
+    <div>
+      <label>Boolean Checkbox</label>
+      <field name="vegetarian" component="checkbox" />
+    </div>
+    <div>
+      <label
+        >Multi Checkboxes (The value will be array of selected
+        checkboxes)</label
+      >
+      <field
+        name="foods"
+        component="input"
+        type="checkbox"
+        value="chicken 🐥"
+      />
+      <field
+        name="foods"
+        component="input"
+        type="checkbox"
+        value="Fesenjoon 🥜"
+      />
+      <field
+        name="foods"
+        component="input"
+        type="checkbox"
+        value="Ghormesabzi 😍"
+      />
+      <field name="foods" component="input" type="checkbox" value="Gheyme 🐄" />
+    </div>
+    <div>
+      <label>Radio</label>
+      <field name="gender" component="input" type="radio" value="male 👨‍💼" />
+      <field name="gender" component="input" type="radio" value="female 👩‍🔧" />
+    </div>
+    <div>
+      <label>Select</label>
+      <field component="select" name="country">
+        <option>select</option>
+        <option value="australia">Australia</option>
+        <option value="canada">Canada</option>
+        <option value="usa">USA</option>
+      </field>
+    </div>
+    <div>
+      <label>Multiple select</label>
+      <field component="select" name="nationality" multiple>
+        <option>select</option>
+        <option value="australia">Australia</option>
+        <option value="canada">Canada</option>
+        <option value="usa">USA</option>
+      </field>
+    </div>
+    <div>
+      <label>Textarea</label>
+      <field component="story" name="subject" placeholder="Write something.." />
+    </div>
+</c-form>
 ```
 
 For showing validation errors you can use form's state using `slot-scope`, like this:
 
 ```js
-<c-form>
-	<div slot-scope="{ errors, visitedFields }">
-	   <div>
-          <label>Simple Default Input</label>
-          <field
-          	:validate="required"
-            name="user.name"
-            component="input"
-            type="text"
-            placeholder="username"
-          />
-          <span v-if="errors.user.name && visitedFields['user.name']">
-          	{{ errors.user.name }}
-          </span>
-      </div>
-    </div>
-</c-form>
 ```
 
 #### 2. Custom Native components
@@ -95,17 +92,23 @@ You can create your own native components. You can access to field state using
 `slot-scope="fieldState"`.
 
 ```js
-  <c-form :submit="onSubmit">
-  	<field name="user.email" :validate="[required, email]">
-    	<label slot-scope="{ input, events, meta }">
-        	Custom Native Input
-            <input v-bind="input" v-on="events" type="text" />
-            <span v-if="meta.touched && meta.error" class="danger">
-            	{{ meta.error }}
-            </span>
-    	</label>
-  	</field>
-  </c-form>
+ <c-form>
+    <div slot-scope="{ errors, visitedFields }">
+      <div>
+        <label>Simple Default Input</label>
+        <field
+          :validate="required"
+          name="user.name"
+          component="input"
+          type="text"
+          placeholder="username"
+        />
+        <span v-if="errors.user.name && visitedFields['user.name']">
+          {{ errors.user.name }}
+        </span>
+      </div>
+    </div>
+</c-form>
 ```
 
 #### 2. Custom and reusable components

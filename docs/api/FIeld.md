@@ -350,38 +350,233 @@ Will disable the native input
 </tbody>
 </table>
 
-## Field `:props`
+## Field `{}State` (field.meta)
 
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/><br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/><br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/><br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Properties</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Example</th>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+<td style="text-align:left">name</td>
+<td style="text-align:left"><code>string</code></td>
+<td style="text-align:left"><a href="">Link</a></td>
+</tr>
+<tr >
+<td style="text-align:left" colspan="3">
+name of the field
+</td>
+</tr>
+
+<tr>
+<td style="text-align:left">value</td>
+<td style="text-align:left"><code>any</code></td>
+<td style="text-align:left"><a href="">Link</a></td>
+</tr>
+<tr >
+<td style="text-align:left" colspan="3">
+Current value of field. accessible from <code>field.value</code> or <code>field.meta.value</code>
+</td>
+</tr>
+
+<tr>
+<td style="text-align:left">meta.active</td>
+<td style="text-align:left"><code>boolean</code></td>
+<td style="text-align:left"><a href="">Link</a></td>
+</tr>
+<tr >
+<td style="text-align:left" colspan="3">
+Will be true when field has been focus (while user is interacting with field), Will be false when blur function triggered.
+</td>
+</tr>
+
+<tr>
+<td style="text-align:left">meta.dirty</td>
+<td style="text-align:left"><code>boolean</code></td>
+<td style="text-align:left"><a href="">Link</a></td>
+</tr>
+<tr >
+<td style="text-align:left" colspan="3">
+Will be true when the value of the field is not equal to the initial value.
+</td>
+</tr>
+
+<tr>
+<td style="text-align:left">meta.error</td>
+<td style="text-align:left"><code>string</code></td>
+<td style="text-align:left"><a href="">Link</a></td>
+</tr>
+<tr >
+<td style="text-align:left" colspan="3">
+When the validations has been ran the result will be set to this property. (error message)
+</td>
+</tr>
+
+<tr>
+<td style="text-align:left">meta.invalid</td>
+<td style="text-align:left"><code>boolean</code></td>
+<td style="text-align:left"><a href="">Link</a></td>
+</tr>
+<tr >
+<td style="text-align:left" colspan="3">
+Will be true when the error property has a value.
+</td>
+</tr>
+
+<tr>
+<td style="text-align:left">meta.valid</td>
+<td style="text-align:left"><code>boolean</code></td>
+<td style="text-align:left"><a href="">Link</a></td>
+</tr>
+<tr >
+<td style="text-align:left" colspan="3">
+Will be true when the error property has not a value.
+</td>
+</tr>
+
+<tr>
+<td style="text-align:left">meta.modified</td>
+<td style="text-align:left"><code>boolean</code></td>
+<td style="text-align:left"><a href="">Link</a></td>
+</tr>
+<tr >
+<td style="text-align:left" colspan="3">
+Will be true if this field's value has ever been changed. false otherwise.
+</td>
+</tr>
+
+<tr>
+<td style="text-align:left">meta.pristine</td>
+<td style="text-align:left"><code>boolean</code></td>
+<td style="text-align:left"><a href="">Link</a></td>
+</tr>
+<tr >
+<td style="text-align:left" colspan="3">
+true if the current value is equal to the same property in initial values, otherwise false.
+</td>
+</tr>
+
+<tr>
+<td style="text-align:left">meta.touched</td>
+<td style="text-align:left"><code>boolean</code></td>
+<td style="text-align:left"><a href="">Link</a></td>
+</tr>
+<tr >
+<td style="text-align:left" colspan="3">
+Will be true if the focus and blur events has been called before in field.
+</td>
+</tr>
+
+<tr>
+<td style="text-align:left">meta.visited</td>
+<td style="text-align:left"><code>boolean</code></td>
+<td style="text-align:left"><a href="">Link</a></td>
+</tr>
+<tr >
+<td style="text-align:left" colspan="3">
+Will be true if the focus event has been called before in field.
+</td>
+</tr>
+
+</body>
+</table>
+
+## Field `Methods()` (field.events)
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Properties</th>
+<th style="text-align:left">Parameters</th>
+<th style="text-align:left">Example</th>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+<td style="text-align:left">events.change or change</td>
+<td style="text-align:left"><code>value: any</code></td>
+<td style="text-align:left"><a href="">Link</a></td>
+</tr>
+<tr >
+<td style="text-align:left" colspan="3">
+For changing the value of field. accessible from <code>field.events</code> or <code>field.change</code>. You can pass native event or pass any type of value to it.
+You can find more in examples.
+</td>
+</tr>
+
+<tr>
+<td style="text-align:left">events.focus</td>
+<td style="text-align:left"><code>undefined</code></td>
+<td style="text-align:left"><a href="">Link</a></td>
+</tr>
+<tr >
+<td style="text-align:left" colspan="3">
+Will change some properties in field state. like visited or touched.
+</td>
+</tr>
+
+<tr>
+<td style="text-align:left">events.blur</td>
+<td style="text-align:left"><code>undefined</code></td>
+<td style="text-align:left"><a href="">Link</a></td>
+</tr>
+<tr >
+<td style="text-align:left" colspan="3">
+Same with <code>focus()</code>, Will change some properties in field state. like visited or touched.
+</td>
+</tr>
+
+</tbody>
+</table>
+
+## Accessibility to state and methods
+
+It depends how do you want to use the field.
+
+#### 1. Custom native components
+
+```js
+{
+	meta: fieldState,
+    events: {
+      change,
+      focus,
+      blur
+    },
+    input: {
+        type,
+        name,
+        multiple, // only for select
+        placeholder,
+        checked, // only for select checkbox,
+        value, // this value is for
+    },
+    name,
+}
+```
+
+#### 2. Custom reusable components
+
+This means you want to create a component in different location and file and use it everywhere. You will need to import `FieldStateMixin` then we'll have this structure.
+
+```js
+{
+	meta: fieldState,
+    events: {
+      change,
+      focus,
+      blur
+    },
+    value,
+    change, // no difference in events.change and this,
+    name,
+}
+```
+
+This structure will be useful because we can use `v-bind` and `v-on`. checkout the above examples or click on links.

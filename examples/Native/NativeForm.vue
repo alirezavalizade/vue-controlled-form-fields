@@ -240,6 +240,7 @@ form {
       border-radius: 4px;
       resize: vertical;
       font-size: 16px;
+      font-size: 12px;
     }
 
     input[type='checkbox'],
@@ -252,6 +253,7 @@ form {
       display: inline-block;
       color: #333;
       font-weight: 800;
+      font-size: 12px;
     }
 
     button {
@@ -304,6 +306,7 @@ form {
       text-align: left;
       display: block;
       color: red;
+      font-size: 12px;
     }
   }
 

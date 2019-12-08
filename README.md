@@ -61,7 +61,7 @@
     </div>
 
     <h2>Using slot-scope</h2>
-    <field name="bio">
+    <field name="bio" :validate="[required]">
       <div slot-scope="{ input, events, meta }">
         <div>
           <label>Bio</label>

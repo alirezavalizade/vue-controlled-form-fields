@@ -1,7 +1,7 @@
 {
   "name": "vue-controlled-form-fields",
   "version": "0.1.0",
-  "description": "Controlled and subscription-based forms, fields with state management",
+  "description": "Controlled and subscription-based forms, fields with state management using Vue's power 🙌",
   "main": "dist/vue-controlled-form-fields.umd.js",
   "browser": "src/index.js",
   "files": [
@@ -26,11 +26,9 @@
   },
   "homepage": "https://github.com/alirezavalizade/vue-controlled-form-fields#readme",
   "dependencies": {
-    "core-js": "^3.3.2",
     "lodash.get": "^4.4.2",
     "lodash.isequal": "^4.5.0",
-    "lodash.set": "^4.3.2",
-    "vue": "^2.6.10"
+    "lodash.set": "^4.3.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.0.0",
@@ -52,7 +50,11 @@
     "node-sass": "^4.13.0",
     "prettier": "^1.18.2",
     "sass-loader": "^8.0.0",
-    "vue-template-compiler": "^2.6.10"
+    "vue-template-compiler": "^2.6.10",
+    "core-js": "^3.3.2"
+  },
+  "peerDependencies": {
+    "vue": "^2.6.10"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"

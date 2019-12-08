@@ -182,7 +182,7 @@
           <button
             @click="form.reset"
             type="button"
-            :disabled="submitting || pristine"
+            :disabled="form.submitting || form.pristine"
           >
             reset
           </button>

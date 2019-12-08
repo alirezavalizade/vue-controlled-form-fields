@@ -1,15 +1,15 @@
 <template>
-  <native
-    v-if="component"
-    :input="input"
-    :events="events"
-    :isNativeSelect="isNativeSelect"
-    :isNativeInput="isNativeInput"
-    :isNativeTextarea="isNativeTextarea"
-    :field-value="fieldState.value"
-  />
-  <span v-else>
-    <slot v-bind="params" />
+  <span>
+    <native
+      v-if="component"
+      :input="input"
+      :events="events"
+      :isNativeSelect="isNativeSelect"
+      :isNativeInput="isNativeInput"
+      :isNativeTextarea="isNativeTextarea"
+      :field-value="fieldState.value"
+    />
+    <slot v-if="!isNativeSelect" v-bind="params" />
   </span>
 </template>
 <script>

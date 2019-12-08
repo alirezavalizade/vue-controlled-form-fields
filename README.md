@@ -28,7 +28,7 @@
   <br />
 </div>
 
-```js
+```vue
 <c-form :submit="onSubmit">
    <div slot-scope="{pristine, invalid}">
     <h2>Simple Default Input</h2>

@@ -36,7 +36,7 @@
 - [**`<Field />`**](./docs/api/Field.md)
   - [Documents](./docs/api/Field.md)
   - [Examples]()
-- [**<FieldArray />**](./docs/api/FieldArray.md)
+- [**`<FieldArray />`**](./docs/api/FieldArray.md)
   - [Documents](./docs/api/FieldArray.md)
   - [Examples]()
 - [**FieldStateMixin**](./docs/api/FieldStateMixin.md)

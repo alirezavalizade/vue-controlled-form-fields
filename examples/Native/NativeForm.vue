@@ -253,7 +253,7 @@ form {
       display: inline-block;
       color: #333;
       font-weight: 800;
-      font-size: 12px;
+      font-size: 14px;
     }
 
     button {

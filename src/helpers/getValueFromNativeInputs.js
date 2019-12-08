@@ -7,10 +7,16 @@ const getValueFromNativeInputs = (e, currentValue, valueProp) => {
   if (type === 'checkbox') {
     if (valueProp === undefined) return !!checked;
 
-    if (checked) {
-      return Array.isArray(currentValue)
-        ? currentValue.concat(valueProp)
-        : [valueProp];
+    if (Array.isArray(currentValue)) {
+      if (checked) {
+        return currentValue.concat(valueProp);
+      } else {
+        const v = currentValue;
+        v.splice(currentValue.indexOf(valueProp), 1);
+        return v;
+      }
+    } else {
+      return [valueProp];
     }
   }
   if (type === 'radio') {

@@ -62,10 +62,10 @@
 
     <h2>Using slot-scope</h2>
     <field name="bio">
-      <div slot-scope="{events, meta, name, value}">
+      <div slot-scope="{ input, events, meta }">
         <div>
           <label>Bio</label>
-          <textarea v-on="events" v-bind="{name, value}"/>
+          <textarea v-bind="input" v-on="events" />
           <span v-if="meta.touched && meta.error">{{ meta.error }}</span>
         </div>
       </div>

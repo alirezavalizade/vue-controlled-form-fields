@@ -8,10 +8,19 @@
         <div class="col-75">
           <field
             name="user.firstname"
+            :validate="required"
             component="input"
             type="text"
             placeholder="Your name.."
-          />
+          >
+            <span
+              slot-scope="{ meta }"
+              v-if="meta.touched && meta.error"
+              class="danger"
+            >
+              {{ meta.error }}
+            </span>
+          </field>
         </div>
       </div>
       <div class="row">
@@ -163,8 +172,20 @@
       </div>
       <div class="row">
         <div class="col-75">
-          <button @click="form.handleSubmit" type="button">submit</button>
-          <button @click="form.reset" type="button">reset</button>
+          <button
+            @click="form.handleSubmit"
+            type="button"
+            :disabled="rest.submitting || rest.pristine"
+          >
+            submit
+          </button>
+          <button
+            @click="form.reset"
+            type="button"
+            :disabled="submitting || pristine"
+          >
+            reset
+          </button>
         </div>
       </div>
       <br />
@@ -186,6 +207,12 @@ export default {
   methods: {
     onSubmit(values) {
       console.log(values);
+    },
+    required(v) {
+      if (v) {
+        return;
+      }
+      return 'Required';
     }
   }
 };
@@ -245,6 +272,10 @@ form {
       background-color: #45a049;
     }
 
+    button[disabled] {
+      cursor: not-allowed;
+    }
+
     .col-25 {
       float: left;
       width: 25%;
@@ -267,6 +298,12 @@ form {
       content: '';
       display: table;
       clear: both;
+    }
+
+    .danger {
+      text-align: left;
+      display: block;
+      color: red;
     }
   }
 

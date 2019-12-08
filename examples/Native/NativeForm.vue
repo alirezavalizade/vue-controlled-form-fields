@@ -52,9 +52,11 @@
             <option value="namibian">namibian</option>
             <option value="other">other</option>
           </field>
+          <div><br /></div>
           <field
             v-if="
               rest.values.nationality &&
+                rest.values.nationality.length === 1 &&
                 rest.values.nationality.includes('other')
             "
             key="nationality_other"
@@ -253,6 +255,12 @@ form {
       float: left;
       width: 75%;
       margin-top: 6px;
+    }
+
+    .row {
+      border-bottom: 1px solid #f3f3f3;
+      padding-bottom: 10px;
+      margin-bottom: 5px;
     }
 
     .row:after {

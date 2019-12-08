@@ -28,6 +28,8 @@
   <br />
 </div>
 
+`vue-controlled-form-fields` is a flexible and hight-performance state-managament tool for creating different level of forms.
+
 ```vue
 <c-form :submit="onSubmit">
    <div slot-scope="{pristine, invalid}">

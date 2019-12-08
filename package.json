@@ -1,6 +1,6 @@
 {
   "name": "vue-controlled-form-fields",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Controlled and subscription-based forms, fields with state management using Vue's power 🙌",
   "main": "dist/vue-controlled-form-fields.umd.js",
   "browser": "src/index.js",

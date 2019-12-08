@@ -29,8 +29,8 @@
 <script>
 import { Layout, Icon } from 'ant-design-vue';
 import Menu from './components/Menu';
-import NativeForm from './examples/Native/NativeForm.vue';
-import AntdForm from './examples/Antd/AntdForm.vue';
+import NativeForm from '../examples/Native/NativeForm.vue';
+import AntdForm from '../examples/Antd/AntdForm.vue';
 
 export default {
   components: {

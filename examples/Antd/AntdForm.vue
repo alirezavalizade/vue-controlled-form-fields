@@ -86,7 +86,7 @@
 <script>
 import { Col, Row } from 'ant-design-vue';
 import { Form as CForm, Field, FieldArray } from 'vue-controlled-form-fields';
-import { required, email, shouldBeMatchWith } from '../../utils/validations';
+import { required, email, shouldBeMatchWith } from '../validations';
 
 // FORM INPUT COMPONENTS
 import InputText from './components/InputText';

@@ -27,3 +27,36 @@
   <br />
   <br />
 </div>
+
+```js
+<c-form :submit="onSubmit">
+   <div slot-scope="{pristine, invalid}">
+    <h2>Simple Default Input</h2>
+    <div>
+      <label>First Name</label>
+      <field name="firstName" component="input" placeholder="First Name"/>
+    </div>
+
+    <h2>A Reusable Input Component</h2>
+    <div>
+      <label>Interests</label>
+      <field name="interests">
+        <InterestPicker/>
+      </field>
+    </div>
+
+    <h2>Using slot-scope</h2>
+    <field name="bio">
+      <div slot-scope="{events, meta, name, value}">
+        <div>
+          <label>Bio</label>
+          <textarea v-on="events" v-bind="{name, value}"/>
+          <span v-if="meta.touched && meta.error">{{ meta.error }}</span>
+        </div>
+      </div>
+    </field>
+
+    <button type="submit" :disabled="pristine || invalid">Submit</button>
+  </div>
+</c-form>
+```

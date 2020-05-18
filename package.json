@@ -41,7 +41,7 @@
     "ant-design-vue": "^1.4.6",
     "babel-eslint": "^10.0.3",
     "babel-plugin-import": "^1.13.0",
-    "codecov": "^3.6.1",
+    "codecov": "^3.7.0",
     "core-js": "^3.3.2",
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.1.1",
